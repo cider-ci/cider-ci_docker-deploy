@@ -1,0 +1,9 @@
+[Unit]
+Description=Test-Dependant
+BindsTo=test.service
+After=test.service
+
+[Service]
+Type=oneshot
+ExecStart=/cider-ci/docker/test-dependant.sh
+RemainAfterExit=yes

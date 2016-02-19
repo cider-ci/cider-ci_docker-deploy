@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -eux
+
+env | grep PATH
+
+export RAILS_ENV=production
+source /etc/profile.d/rbenv.sh
+
+cd /cider-ci/server/user-interface/
+bundle exec rake db:migrate

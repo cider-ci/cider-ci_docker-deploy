@@ -1,0 +1,4 @@
+#!/bin/env bash
+set -eux
+NAME='cider-ci/wily/dev/systemd_sshd'
+docker build -t "$NAME":v0 "$NAME"

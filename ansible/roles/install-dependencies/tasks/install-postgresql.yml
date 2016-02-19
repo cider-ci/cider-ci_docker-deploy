@@ -1,0 +1,26 @@
+- name: exclude postgresql from base
+  lineinfile:
+    dest: /etc/yum.repos.d/CentOS-Base.repo
+    insertafter: ^\[base\]`
+    line: exclude=postgresql*
+
+- name: exclude postgres from updates
+  lineinfile:
+    dest: /etc/yum.repos.d/CentOS-Base.repo
+    insertafter: ^\[updates\]`
+    line: exclude=postgres*
+
+- name: setup rpm repo for postgres 9.5-2
+  yum:
+    name: http://yum.postgresql.org/9.5/redhat/rhel-7-x86_64/pgdg-centos95-9.5-2.noarch.rpm
+
+- name: install postgresql packages
+  yum:
+    name:
+      - postgresql95.x86_64
+      - postgresql95-server.x86_64
+      - postgresql95-contrib.x86_64
+      - postgresql95-devel.x86_64
+
+- name: clean yum
+  command: yum -y clean all

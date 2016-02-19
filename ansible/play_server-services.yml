@@ -1,0 +1,19 @@
+- hosts: localhost
+  connection: local
+
+
+  vars_files:
+    - vars.yml
+
+
+  roles:
+
+    - role: git-checkout
+      git_checkout_target_path: "{{server_dir}}"
+      git_checkout_repo: https://github.com/cider-ci/cider-ci.git
+      git_checkout_version: "{{cider_ci_git_ref}}"
+      tags: [server-checkout]
+
+    - role: roles/install-services
+      tags: [install-services]
+

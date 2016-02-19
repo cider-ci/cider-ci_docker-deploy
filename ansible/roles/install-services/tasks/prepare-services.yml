@@ -1,0 +1,15 @@
+- set_fact:
+    service: "{{item}}"
+
+- set_fact:
+    service_dir: "{{server_dir}}{{service.path}}"
+
+- debug:
+    var: service
+
+- include: prepare-lein-service.yml
+  when: service.type == 'lein'
+
+- include: prepare-rails-service.yml
+  when: service.type == 'rails'
+

@@ -1,0 +1,8 @@
+- name: install httpd packages
+  yum:
+    name:
+      - httpd
+      - mod_xsendfile
+
+- name: clean yum
+  command: yum -y clean all

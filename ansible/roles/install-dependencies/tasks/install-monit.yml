@@ -1,0 +1,7 @@
+- name: install rabbitmq packages
+  yum:
+    name:
+      - monit
+
+- name: clean yum
+  command: yum -y clean all

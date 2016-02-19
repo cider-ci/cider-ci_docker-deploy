@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -eux
+
+NAME='cider-ci/base/dev/systemd_sshd'
+DIR='systemd_sshd'
+TAG='16_01'
+
+docker build -t "$NAME:$TAG" $DIR

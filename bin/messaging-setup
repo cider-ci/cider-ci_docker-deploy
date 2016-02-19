@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -eux
+export HOME=~
+
+cd /cider-ci/docker-deploy/ansible
+ansible-playbook play_messaging.yml

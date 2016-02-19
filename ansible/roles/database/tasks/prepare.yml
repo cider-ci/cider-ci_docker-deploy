@@ -1,0 +1,33 @@
+- name: Create or update postgresql root user
+  become: true
+  become_user: postgres
+  become_method: su
+  postgresql_user:
+    name: root
+    role_attr_flags: CREATEDB,SUPERUSER
+    login_user: postgres
+
+- name: Create root database
+  postgresql_db:
+    name: root
+    owner: root
+    login_user: root
+
+- name: Enable extensions
+  command: psql template1 -U root -c
+                'CREATE EXTENSION IF NOT EXISTS "{{item}}";'
+  with_items: [uuid-ossp, pg_trgm, pgcrypto]
+
+- name: Create or update cider-ci user
+  postgresql_user:
+    name: cider-ci
+    password: secret
+    role_attr_flags: CREATEDB,SUPERUSER
+    login_user: root
+
+- name: Create cider-ci database
+  postgresql_db:
+    name: cider-ci
+    owner: cider-ci
+    login_user: root
+

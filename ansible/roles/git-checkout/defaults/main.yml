@@ -1,0 +1,5 @@
+# git_checkout_target_path: NULL
+# git_checkout_repo: NULL
+git_checkout_version: master
+git_checkout_clean_slate: false
+git_checkout_owner: root

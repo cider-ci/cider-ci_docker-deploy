@@ -1,0 +1,66 @@
+server_dir: /cider-ci/server
+cider_ci_git_ref: e64535fb5d2cc8ca800b750c8fa7ef42eda450ac
+
+web_context: "/cider-ci"
+ui_sub_context: "{{services.ui.context}}"
+
+ruby_version: jruby-9.0.5.0
+
+services:
+
+  ui:
+    name: user-interface
+    type: rails
+    path: /user-interface
+    http_port: 8880
+    context: /ui
+    max_memory_fraction: 0.40
+    cache_store_size_fraction: 0.05
+
+  api:
+    name: api
+    type: lein
+    path: /api
+    http_port: 8885
+    context: /api
+    main: cider_ci.api.main
+
+  builder:
+    name: builder
+    type: lein
+    path: /builder
+    http_port: 8884
+    context: /builder
+    main: cider_ci.builder.main
+
+  dispatcher:
+    name: dispatcher
+    type: lein
+    path: /dispatcher
+    http_port: 8882
+    context: /dispatcher
+    main: cider_ci.dispatcher.main
+
+  notifier:
+    name: notifier
+    type: lein
+    path: /notifier
+    http_port: 8887
+    context: /dispatcher
+    main: cider_ci.notifier.main
+
+  repository:
+    name: repository
+    type: lein
+    path: /repository
+    http_port: 8881
+    context: /repositories
+    main: cider_ci.repository.main
+
+  storage:
+    name: storage
+    type: lein
+    path: /storage
+    http_port: 8886
+    context: /storage
+    main: cider_ci.storage.main

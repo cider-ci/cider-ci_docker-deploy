@@ -1,0 +1,51 @@
+- name: set :aot :all
+  lineinfile:
+    dest: '{{service_dir}}/project.clj'
+    regexp: '^\s+:aot\s+.*'
+    line: '  :aot :all'
+
+- name: lein_jar
+  shell: |
+    set -eux
+    cd {{service_dir}}
+    export LEIN_ROOT=yes
+    lein do install
+  register: lein_jar_cmd_res
+
+- name: jar path
+  shell: echo '{{lein_jar_cmd_res.stdout}}' | grep Created | cut -d " " -f 2  | xargs
+  register: jar_path_cmd_res
+
+- name: lein cp
+  shell: |
+    set -eux
+    cd {{service_dir}}
+    export LEIN_ROOT=yes
+    lein with-profile production cp
+  register: lein_cp_cmd_res
+
+- name: classpath
+  classpath:
+    lein_cp: "{{lein_cp_cmd_res.stdout}}"
+    jar_path: "{{jar_path_cmd_res.stdout}}"
+    service_dir: "{{service_dir}}"
+    server_dir: "{{server_dir}}"
+  register: classpath_cmd_res
+
+- set_fact:
+    classpath: "{{classpath_cmd_res.classpath}}"
+
+- copy:
+    dest: /usr/local/bin/cider-ci_{{service.name}}
+    mode: a+x
+    content: |
+      #!/usr/bin/env bash
+      set -eux
+      cd {{service_dir}}
+
+      MEMORY_TOTAL_MB=$(free -m | awk '/^Mem:/{print $2}')
+      XMX_MB=$(echo "($MEMORY_TOTAL * 0.05)/1" | bc)
+      export JAVA_OPTS="-Xmx${XMX_MB}m"
+
+      export CLASSPATH={{classpath}}
+      java {{service.main}}

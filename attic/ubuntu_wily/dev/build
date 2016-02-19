@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -eux
+
+NAME='cider-ci/base/dev'
+DIR='dev'
+TAG='latest'
+
+docker build -t "$NAME:$TAG" $DIR

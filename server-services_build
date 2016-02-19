@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -eux
+
+NAME='cider-ci/server-services'
+DIR='.'
+TAG='latest'
+
+docker build -t "$NAME:$TAG" -f $DIR/server-services.dockerfile $DIR
+

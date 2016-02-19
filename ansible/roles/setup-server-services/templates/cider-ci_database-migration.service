@@ -1,0 +1,10 @@
+[Unit]
+Description=Cider-CI Database-Migrate
+BindsTo=cider-ci_database-setup.service
+After=cider-ci_database-setup.service
+
+
+[Service]
+Type=oneshot
+ExecStart=/cider-ci/docker-deploy/bin/database-migrate
+RemainAfterExit=yes

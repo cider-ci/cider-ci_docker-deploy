@@ -1,0 +1,22 @@
+- name: check if ruby {{ruby_version}} is installed
+  shell: source /etc/profile.d/rbenv.sh && rbenv shell {{ruby_version}}
+  ignore_errors: yes
+  register: rbenv_shell_cmd
+
+- name: install ruby {{ruby_version}}
+  shell: >
+    source /etc/profile.d/rbenv.sh
+    && rbenv install {{ruby_version}}
+    && rbenv global {{ruby_version}}
+    && rbenv shell {{ruby_version}}
+    && gem install bundler
+  when: rbenv_shell_cmd | failed
+
+- name: bundle
+  shell: >
+    source /etc/profile.d/rbenv.sh
+    && rbenv shell {{ruby_version}}
+    && cd {{service_dir}}
+    && export RAILS_ENV=production
+    && bundle
+

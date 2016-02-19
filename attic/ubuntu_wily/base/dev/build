@@ -1,0 +1,1 @@
+docker build -t cider-ci/ubuntu_15-10/dev:v0 ubuntu_15-10/dev

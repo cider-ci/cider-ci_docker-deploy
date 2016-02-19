@@ -1,0 +1,15 @@
+[Unit]
+Description={{item.value.name}}
+BindsTo=cider-ci_configure.service
+After=cider-ci_configure.service
+BindsTo=cider-ci_database-migration.service
+After=cider-ci_database-migration.service
+BindsTo=cider-ci_messaging-setup.service
+After=cider-ci_messaging-setup.service
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/cider-ci_{{item.value.name}}
+
+[Install]
+WantedBy=multi-user.target

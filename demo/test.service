@@ -1,0 +1,7 @@
+[Unit]
+Description=Test
+
+[Service]
+Type=oneshot
+ExecStart=/cider-ci/docker/test.sh
+RemainAfterExit=yes

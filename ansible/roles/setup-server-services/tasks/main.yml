@@ -1,0 +1,58 @@
+# TODO: move this to the install-services role
+- template:
+    src: run_rails-service.sh
+    dest: /usr/local/bin/cider-ci_{{item.value.name}}
+    mode: u=rwx,g=rx,o=rx
+  with_dict: services
+  when: item.value.type == 'rails'
+
+- template:
+    src: cider-ci_pre-configure.service
+    dest: /etc/systemd/system/cider-ci_pre-configure.service
+
+- template:
+    src: cider-ci_configure.service
+    dest: /etc/systemd/system/cider-ci_configure.service
+
+- template:
+    src: cider-ci_messaging-setup.service
+    dest: /etc/systemd/system/cider-ci_messaging-setup.service
+
+- template:
+    src: cider-ci_database-setup.service
+    dest: /etc/systemd/system/cider-ci_database-setup.service
+
+- template:
+    src: cider-ci_database-migration.service
+    dest: /etc/systemd/system/cider-ci_database-migration.service
+
+- template:
+    src: service.service
+    dest: /etc/systemd/system/cider-ci_{{item.value.name}}.service
+  with_dict: services
+
+- file:
+    src: /etc/systemd/system/cider-ci_{{item.value.name}}.service
+    dest: /etc/systemd/system/multi-user.target.wants/cider-ci_{{item.value.name}}.service
+    state: link
+  with_dict: services
+
+
+### reverse proxy
+
+- file:
+    src: /usr/lib/systemd/system/httpd.service
+    dest: /etc/systemd/system/multi-user.target.wants/httpd.service
+    state: link
+
+- file:
+    path: /etc/httpd/conf.d/userdir.conf
+    state: absent
+
+- file:
+    path: /etc/httpd/conf.d/welcome.conf
+    state: absent
+
+- template:
+    src: httpd.conf
+    dest: /etc/httpd/conf.d/cider-ci.conf

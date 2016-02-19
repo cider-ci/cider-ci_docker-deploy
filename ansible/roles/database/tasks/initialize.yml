@@ -1,0 +1,33 @@
+- file:
+    path: /cider-ci/data
+    state: directory
+
+- file:
+    path: /cider-ci/data/database
+    state: directory
+    owner: postgres
+    mode: 0700
+
+- lineinfile:
+    dest: /lib/systemd/system/postgresql-9.5.service
+    line: Environment=PGDATA=/cider-ci/data/database
+    regexp: ^Environment=PGDATA=
+
+- command: /usr/pgsql-9.5/bin/postgresql95-setup initdb
+
+- lineinfile:
+    dest: /cider-ci/data/database/pg_hba.conf
+    line: host all all 127.0.0.1/32 md5
+    regexp: ^host\s+all\s+all\s+127\.0\.0\.1
+
+- lineinfile:
+    dest: /cider-ci/data/database/pg_hba.conf
+    line: host all all ::1/128 md5
+    regexp: ^host\s+all\s+all\s+::1\/128
+
+- service:
+    name: postgresql-9.5
+    enabled: yes
+    state: started
+
+

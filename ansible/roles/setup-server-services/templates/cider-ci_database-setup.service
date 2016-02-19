@@ -1,0 +1,10 @@
+[Unit]
+Description=Cider-CI Database-Setup
+BindsTo=cider-ci_configure.service
+After=cider-ci_configure.service
+
+
+[Service]
+Type=oneshot
+ExecStart=/cider-ci/docker-deploy/bin/database-setup
+RemainAfterExit=yes

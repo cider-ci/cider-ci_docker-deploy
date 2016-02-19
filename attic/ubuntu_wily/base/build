@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -eux
+
+NAME='cider-ci/base'
+DIR='base'
+TAG='16_01'
+URL='https://partner-images.canonical.com/core/wily/current/ubuntu-wily-core-cloudimg-amd64-root.tar.gz'
+
+if [ ! -f $DIR/base_image.tar.gz ]; then
+  curl -L $URL > "$DIR/base_image.tar.gz"
+fi
+docker build -t "$NAME:$TAG" $DIR

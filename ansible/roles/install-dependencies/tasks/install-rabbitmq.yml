@@ -1,0 +1,19 @@
+- name: install rabbitmq packages
+  yum:
+    name:
+      - librabbitmq-devel
+      - rabbitmq-server
+
+- name: clean yum
+  command: yum -y clean all
+
+- name: set rabbitmq host
+  lineinfile:
+    dest: /etc/rabbitmq/rabbitmq-env.conf
+    line: NODENAME=rabbit@localhost
+    create: yes
+
+- name: enable rabbitmq_management
+  rabbitmq_plugin:
+    names: rabbitmq_management
+    state: enabled

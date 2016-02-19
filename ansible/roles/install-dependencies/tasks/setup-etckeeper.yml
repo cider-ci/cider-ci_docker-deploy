@@ -1,0 +1,23 @@
+- name: install etckeeper
+  yum:
+    name:
+      - etckeeper
+
+- name: clean yum
+  command: yum -y clean all
+
+- name: configure git
+  shell: |
+    #!/usr/bin/env bash
+    set -eux
+    git config --global user.email 'root@localhost'
+    git config --global user.name root
+
+- name: setup /etc to be tracked by etc keeper
+  shell: |
+    #!/usr/bin/env bash
+    set -eux
+    cd /etc
+    etckeeper init
+    etckeeper commit "Initial commit"
+  ignore_errors: true

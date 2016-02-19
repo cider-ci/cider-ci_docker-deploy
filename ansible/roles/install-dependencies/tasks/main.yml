@@ -1,0 +1,10 @@
+- include: install-httpd.yml
+
+- include: setup-etckeeper.yml
+
+- include: install-postgresql.yml
+
+- include: install-rabbitmq.yml
+
+- include: install-monit.yml
+

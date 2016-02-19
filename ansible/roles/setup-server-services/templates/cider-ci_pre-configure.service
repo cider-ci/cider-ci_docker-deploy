@@ -1,0 +1,7 @@
+[Unit]
+Description=Cider-CI Pre-Configure
+
+[Service]
+Type=oneshot
+ExecStart=/cider-ci/docker-deploy/bin/pre-configure
+RemainAfterExit=yes

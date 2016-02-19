@@ -1,0 +1,9 @@
+- hosts: localhost
+  connection: local
+
+  vars_files:
+    - vars.yml
+    - /cider-ci/data/config/vars.yml
+
+  roles:
+    - role: roles/configure

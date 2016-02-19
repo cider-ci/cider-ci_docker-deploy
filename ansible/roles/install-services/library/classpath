@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+# WANT_JSON
+
+require 'json'
+
+
+input = File.open(ARGV[0]).read
+args= JSON.parse(input)
+
+jar_path = args['jar_path']
+server_dir = args['server_dir']
+service_dir = args['service_dir']
+
+cps = args['lein_cp'] \
+  .split(':').select{|l| l =~ %r(\.m2/)} \
+  .unshift(jar_path).unshift("#{service_dir}/config") \
+  .unshift("#{server_dir}/config").join(':')
+
+print JSON.dump({args: args, input: input, classpath: cps})

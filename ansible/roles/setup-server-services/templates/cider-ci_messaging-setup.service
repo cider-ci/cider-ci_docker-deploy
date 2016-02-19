@@ -1,0 +1,9 @@
+[Unit]
+Description=Cider-CI Messaging-Setup
+BindsTo=cider-ci_configure.service
+After=cider-ci_configure.service
+
+[Service]
+Type=oneshot
+ExecStart=/cider-ci/docker-deploy/bin/messaging-setup
+RemainAfterExit=yes

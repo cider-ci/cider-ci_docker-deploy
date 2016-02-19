@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+set -eux
+
+cd /cider-ci/docker-deploy/ansible
+ansible-playbook play_pre-configure.yml

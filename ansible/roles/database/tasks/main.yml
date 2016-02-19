@@ -1,0 +1,9 @@
+- stat:
+    path: /cider-ci/data/database/PG_VERSION
+  register: db_pg_version_file
+
+- include: initialize.yml
+  when: not db_pg_version_file.stat.exists
+
+- include: prepare.yml
+

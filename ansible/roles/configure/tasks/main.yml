@@ -1,0 +1,14 @@
+- name: Configure rails database
+  template:
+    src: rails-database.yml
+    dest: /cider-ci/server/user-interface/config/database.yml
+
+- name: Configure rails secrets
+  template:
+    src: rails-secrets.yml
+    dest: /cider-ci/server/user-interface/config/secrets.yml
+
+- name: Configure services
+  template:
+    src: config.yml
+    dest: /cider-ci/server/config/config.yml
