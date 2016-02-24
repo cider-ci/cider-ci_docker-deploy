@@ -1,11 +1,3 @@
-# TODO: move this to the install-services role
-- template:
-    src: run_rails-service.sh
-    dest: /usr/local/bin/cider-ci_{{item.value.name}}
-    mode: u=rwx,g=rx,o=rx
-  with_dict: services
-  when: item.value.type == 'rails'
-
 - template:
     src: cider-ci_pre-configure.service
     dest: /etc/systemd/system/cider-ci_pre-configure.service

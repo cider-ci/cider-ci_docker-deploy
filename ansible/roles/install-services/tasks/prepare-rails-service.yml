@@ -20,3 +20,7 @@
     && export RAILS_ENV=production
     && bundle
 
+- template:
+    src: run_rails-service.sh
+    dest: /usr/local/bin/cider-ci_{{service.name}}
+    mode: u=rwx,g=rx,o=rx

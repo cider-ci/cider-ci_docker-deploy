@@ -1,5 +1,8 @@
+- debug:
+    var: item
+
 - set_fact:
-    service: "{{item}}"
+    service: "{{item.value}}"
 
 - set_fact:
     service_dir: "{{server_dir}}{{service.path}}"

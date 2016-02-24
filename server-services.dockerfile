@@ -1,6 +1,6 @@
 FROM drtom/server-dependencies:latest
 MAINTAINER “Tom Schank” <DrTom@schank.ch>
 
-COPY ansible /cider-ci/ansible
+COPY . /cider-ci/docker-deploy
 
-RUN cd /cider-ci/ansible && ansible-playbook play_server-services.yml
+RUN cd /cider-ci/docker-deploy/ansible && ansible-playbook play_server_install-services.yml

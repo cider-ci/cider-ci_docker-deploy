@@ -2,12 +2,14 @@ FROM centos:latest
 MAINTAINER “Tom Schank” <DrTom@schank.ch>
 
 ### PREPARE & UTILS ###########################################################
+#
+RUN yum -y install epel-release && yum clean all
+
 
 RUN yum -y update
 
-RUN yum -y install vim-enhanced bash-completion epel-release \
-  bc apg openssl \
-  && yum clean all
+
+RUN yum -y install vim-enhanced bash-completion bc apg openssl && yum clean all
 
 
 ### DEV #######################################################################
@@ -67,8 +69,6 @@ RUN lein
 
 RUN curl https://raw.githubusercontent.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash
 COPY rbenv.sh /etc/profile.d/rbenv.sh
-# RUN source /etc/profile.d/rbenv.sh && rbenv install 2.2.4
-# RUN source /etc/profile.d/rbenv.sh && rbenv global 2.2.4 && gem install bundler
 
 
 ### SYSTEMD ###################################################################

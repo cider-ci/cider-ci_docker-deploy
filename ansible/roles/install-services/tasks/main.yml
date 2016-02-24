@@ -1,2 +1,2 @@
-- include: prepare-services.yml
-  with_items: services
+- include: prepare-service.yml
+  with_dict: services
