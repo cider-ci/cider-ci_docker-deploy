@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-set -eux
-
-NAME='cider-ci/wip01'
-DIR='.'
-TAG='latest'
-
-docker build -t "$NAME:$TAG" -f $DIR/wip01.dockerfile $DIR

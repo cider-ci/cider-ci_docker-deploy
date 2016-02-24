@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -eux
+
+NAME=$(basename "$0")
+PREFIX='drtom'
+DIR='.'
+TAG='latest'
+
+docker build -t "$PREFIX/$NAME:$TAG" -f $DIR/$NAME.dockerfile $DIR
+

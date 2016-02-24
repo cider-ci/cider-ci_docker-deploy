@@ -1,4 +1,4 @@
-FROM cider-ci/wip01:latest
+FROM cider-ci/server-install
 
 MAINTAINER “Tom Schank” <DrTom@schank.ch>
 

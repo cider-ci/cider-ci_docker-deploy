@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -eux
 
-NAME='wip02'
+NAME=$(basename "$0")
 PREFIX='cider-ci'
 DIR='.'
 TAG='latest'

@@ -1,4 +1,4 @@
-FROM drtom/server-dependencies:latest
+FROM drtom/server-dependencies
 MAINTAINER “Tom Schank” <DrTom@schank.ch>
 
 COPY . /cider-ci/docker-deploy
