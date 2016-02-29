@@ -9,3 +9,5 @@ source /etc/profile.d/rbenv.sh
 
 cd /cider-ci/server/user-interface/
 bundle exec rake db:migrate
+
+bundle exec rake db:seed

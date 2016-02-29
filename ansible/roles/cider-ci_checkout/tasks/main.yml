@@ -1,0 +1,4 @@
+- git:
+    repo: "{{cider_ci_repo}}"
+    version: "{{cider_ci_version}}"
+    dest: "{{server_dir}}"

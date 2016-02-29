@@ -1,5 +1,7 @@
+cider_ci_repo: https://github.com/cider-ci/cider-ci.git
+cider_ci_version: v4
+
 server_dir: /cider-ci/server
-cider_ci_git_ref: e64535fb5d2cc8ca800b750c8fa7ef42eda450ac
 
 web_context: "/cider-ci"
 ui_sub_context: "{{services.ui.context}}"
@@ -46,7 +48,7 @@ services:
     type: lein
     path: /notifier
     http_port: 8887
-    context: /dispatcher
+    context: /notifier
     main: cider_ci.notifier.main
 
   repository:

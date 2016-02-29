@@ -93,7 +93,7 @@ services:
   notifier:
 
     http:
-      host: loclahost
+      host: localhost
       port: 8887
       context: /cider-ci
       sub_context: /notifier
