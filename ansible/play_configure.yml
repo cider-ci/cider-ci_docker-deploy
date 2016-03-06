@@ -3,7 +3,8 @@
 
   vars_files:
     - vars.yml
-    - /cider-ci/data/config/vars.yml
+    - /cider-ci/data/config/secrets.yml
 
   roles:
-    - role: roles/configure
+    - role: configure
+    - role: server-monit

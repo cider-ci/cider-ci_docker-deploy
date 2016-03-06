@@ -7,7 +7,7 @@ default: &default
   password: "{{database_secret}}"
   database: cider-ci
   variables:
-    statement_timeout: {{user_interface_statement_timeout_milliseconds}}
+    statement_timeout: {{user_interface_statement_timeout_milliseconds | default(3000) }}
 
 development:
   <<: *default

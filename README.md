@@ -6,11 +6,13 @@ Deploy the Cider-CI server to a docker container.
 
 
 
-    docker build -t cider-ci/base:v0 base
+    docker run -d -t --privileged=true -p 8080:80 \
+      --name cider-ci_server  \
+      -v '/Users/thomas/Programming/CIDER-CI/cider-ci_v4/server-container/bin:/cider-ci/bin' \
+      -v '/Users/thomas/Programming/CIDER-CI/cider-ci_v4/server-container/ansible:/cider-ci/ansible' \
+      cider-ci/server
 
-    docker run -p 2222:22 -p 8080:80 -i -t --privileged=true -v /Users/thomas/Programming/CIDER-CI/cider-ci_v3/docker-deploy:/cider-ci/docker-deploy cider-ci/server-setup
-
-    docker exec  -ti $NAME /bin/bash
+    docker exec -ti cider-ci_server bash
 
 
 

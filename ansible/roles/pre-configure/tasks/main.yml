@@ -4,19 +4,14 @@
 
 ###############################################################################
 
-# - file:
-#     path: /cider-ci/data/config/vars.yml
-#     state: absent
-#
-
-- stat:
-    path: /cider-ci/data/config/vars.yml
-  register: vars_file_stat
-
-- template:
-    src: vars.yml
-    dest: /cider-ci/data/config/vars.yml
-  when: not vars_file_stat.stat.exists
+- update_secrets:
+    path: /cider-ci/data/config/secrets.yml
+    keys:
+      - database_secret
+      - management_secret
+      - messaging_secret
+      - services_basic_auth_secret
+      - session_secret
 
 ###############################################################################
 

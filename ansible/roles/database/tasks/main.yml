@@ -5,5 +5,6 @@
 - include: initialize.yml
   when: not db_pg_version_file.stat.exists
 
-- include: prepare.yml
+- include: monitor.yml
 
+- include: prepare.yml

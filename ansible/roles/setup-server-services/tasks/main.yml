@@ -1,3 +1,6 @@
+- include: prepare-service.yml
+  with_dict: services
+
 - template:
     src: cider-ci_pre-configure.service
     dest: /etc/systemd/system/cider-ci_pre-configure.service
@@ -44,6 +47,10 @@
 - file:
     path: /etc/httpd/conf.d/welcome.conf
     state: absent
+
+- file:
+    path: /etc/httpd/conf.d/cider-ci.d
+    state: directory
 
 - template:
     src: httpd.conf

@@ -1,0 +1,9 @@
+check process postgresql with pidfile /var/run/postgresql/pid
+  group database
+  start program = "/usr/bin/systemctl start postgresql-9.5.service"
+  stop program = "/usr/bin/systemctl stop postgresql-9.5.service"
+if failed unixsocket /var/run/postgresql/.s.PGSQL.5432 protocol pgsql then restart
+if failed unixsocket /var/run/postgresql/.s.PGSQL.5432 protocol pgsql then alert
+if failed host localhost port 5432 protocol pgsql then restart
+if failed host localhost port 5432 protocol pgsql then alert
+if 5 restarts within 10 cycles then timeout

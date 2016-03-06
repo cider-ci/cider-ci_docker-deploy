@@ -21,7 +21,7 @@
 - name: Create or update cider-ci user
   postgresql_user:
     name: cider-ci
-    password: secret
+    password: "{{database_secret}}"
     role_attr_flags: CREATEDB,SUPERUSER
     login_user: root
 

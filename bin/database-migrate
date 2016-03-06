@@ -4,8 +4,8 @@ set -eux
 
 env | grep PATH
 
+export PATH=/cider-ci/server/user-interface/vendor/jruby/bin:$PATH
 export RAILS_ENV=production
-source /etc/profile.d/rbenv.sh
 
 cd /cider-ci/server/user-interface/
 bundle exec rake db:migrate

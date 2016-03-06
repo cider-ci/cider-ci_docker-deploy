@@ -2,9 +2,7 @@
 set -eux
 cd {{server_dir}}{{service.path}}
 
-# ruby
-source /etc/profile.d/rbenv.sh
-rbenv shell {{ruby_version}}
+export PATH={{server_dir}}{{service.path}}/vendor/jruby/bin:$PATH
 export RAILS_ENV=production
 export RAILS_RELATIVE_URL_ROOT={{web_context}}{{item.value.context}}
 

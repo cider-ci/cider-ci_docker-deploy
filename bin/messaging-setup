@@ -3,5 +3,5 @@
 set -eux
 export HOME=~
 
-cd /cider-ci/docker-deploy/ansible
+cd /cider-ci/ansible
 ansible-playbook play_messaging.yml

@@ -1,0 +1,24 @@
+- lineinfile:
+    dest: /etc/monitrc
+    regexp: allow admin:monit
+    line: '#   allow admin:monit'
+
+- lineinfile:
+    dest: /etc/monitrc
+    regexp: with start delay
+    line: '    with start delay 240'
+
+- name: enable monit
+  service:
+    name: monit
+    state: started
+    enabled: yes
+
+- name: configure reverse proxy to monit
+  template:
+    src: monit.conf
+    dest: /etc/httpd/conf.d/cider-ci.d/monit.conf
+
+- service:
+    name: httpd
+    state: reloaded

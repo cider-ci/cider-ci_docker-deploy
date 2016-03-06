@@ -1,2 +1,0 @@
-- include: prepare-service.yml
-  with_dict: services

@@ -6,5 +6,5 @@ After=cider-ci_configure.service
 
 [Service]
 Type=oneshot
-ExecStart=/cider-ci/docker-deploy/bin/database-setup
+ExecStart=/cider-ci/bin/database-setup
 RemainAfterExit=yes

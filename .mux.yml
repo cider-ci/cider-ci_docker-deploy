@@ -1,3 +1,4 @@
+name: cider-ci_v4/server-container
 windows:
   '2':
     name: docker2

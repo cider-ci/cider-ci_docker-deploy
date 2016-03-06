@@ -1,6 +1,6 @@
 FROM drtom/base
 MAINTAINER “Tom Schank” <DrTom@schank.ch>
 
-COPY . /cider-ci/docker-deploy
+COPY ansible /cider-ci/ansible
 
-RUN cd /cider-ci/docker-deploy/ansible && ansible-playbook play_server_install-dependencies.yml
+RUN cd /cider-ci/ansible && ansible-playbook play_server_install-dependencies.yml

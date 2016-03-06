@@ -5,5 +5,5 @@ After=cider-ci_configure.service
 
 [Service]
 Type=oneshot
-ExecStart=/cider-ci/docker-deploy/bin/messaging-setup
+ExecStart=/cider-ci/bin/messaging-setup
 RemainAfterExit=yes

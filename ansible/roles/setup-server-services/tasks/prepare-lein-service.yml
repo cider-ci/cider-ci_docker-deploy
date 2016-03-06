@@ -1,0 +1,4 @@
+- template:
+    src: run_lein-service.sh
+    dest: /usr/local/bin/cider-ci_{{service.name}}
+    mode: u=rwx,g=rx,o=rx

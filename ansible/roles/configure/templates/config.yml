@@ -1,4 +1,4 @@
-job_retention_duration: "{{job_retention_duration}}"
+job_retention_duration: {{job_retention_duration | default('30 days') }}
 
 database:
   adapter: postgresql
@@ -13,14 +13,13 @@ github_authtoken: {{github_authtoken | default('NULL',true) }}
 
 hostname: localhost
 
-secret: "{{secret_key_base}}"
+secret: "{{session_secret}}"
 
 basic_auth:
-  username: service
   password: "{{services_basic_auth_secret}}"
 
 session:
-  secret: "{{secret_key_base}}"
+  secret: "{{session_secret}}"
 
 messaging:
   connection:

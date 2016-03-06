@@ -1,0 +1,9 @@
+- name: create postgresql monit config
+  template:
+    src: postgresql_monit
+    dest: /etc/monit.d/postgresql
+
+- name: reload monit
+  service:
+    name: monit
+    state: reloaded

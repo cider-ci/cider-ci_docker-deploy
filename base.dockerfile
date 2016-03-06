@@ -34,11 +34,11 @@ RUN yum -y install \
 
 
 ### NODEJS ####################################################################
-
-RUN curl --silent --location https://rpm.nodesource.com/setup_5.x | bash -
-RUN yum -y install nodejs \
-  && yum clean all
-
+#
+# RUN curl --silent --location https://rpm.nodesource.com/setup_5.x | bash -
+# RUN yum -y install nodejs \
+#   && yum clean all
+#
 
 ### JDK8 ######################################################################
 
@@ -50,26 +50,26 @@ RUN curl -L --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelice
 
 ### ANSIBLE ###################################################################
 
-RUN yum -y install python-pip python-devel python-psycopg2 \
+RUN yum -y install python-pip python-devel python-psycopg2  python-passlib \
   && yum clean all
 RUN pip install --upgrade pip
-RUN pip install ansible==2.0.0.2
+RUN pip install ansible==2.0.1.0
 
 
 ### LEIN ######################################################################
-
-RUN curl -L -o /usr/local/bin/lein https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein \
-  && chmod a+x /usr/local/bin/lein \
-  && ansible localhost -m lineinfile -a 'dest=/root/.bash_profile line="export LEIN_ROOT=yes"'
-
-RUN lein
-
+#
+# RUN curl -L -o /usr/local/bin/lein https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein \
+#   && chmod a+x /usr/local/bin/lein \
+#   && ansible localhost -m lineinfile -a 'dest=/root/.bash_profile line="export LEIN_ROOT=yes"'
+#
+# RUN lein
+#
 
 ### RBENV & RUBY ##############################################################
-
-RUN curl https://raw.githubusercontent.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash
-COPY rbenv.sh /etc/profile.d/rbenv.sh
-
+#
+# RUN curl https://raw.githubusercontent.com/fesplugas/rbenv-installer/master/bin/rbenv-installer | bash
+# COPY rbenv.sh /etc/profile.d/rbenv.sh
+#
 
 ### SYSTEMD ###################################################################
 

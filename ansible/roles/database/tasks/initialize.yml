@@ -25,9 +25,12 @@
     line: host all all ::1/128 md5
     regexp: ^host\s+all\s+all\s+::1\/128
 
+- lineinfile:
+    dest: /cider-ci/data/database/postgresql.conf
+    line: external_pid_file = '/var/run/postgresql/pid'
+    regexp: external_pid_file =
+
 - service:
     name: postgresql-9.5
     enabled: yes
     state: started
-
-

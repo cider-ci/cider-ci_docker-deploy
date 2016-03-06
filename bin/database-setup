@@ -2,5 +2,5 @@
 
 set -eux
 
-cd /cider-ci/docker-deploy/ansible
+cd /cider-ci/ansible
 ansible-playbook play_database.yml

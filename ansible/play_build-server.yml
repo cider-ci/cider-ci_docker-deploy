@@ -2,7 +2,8 @@
   connection: local
 
   vars_files:
-    - vars.yml
+  - vars.yml
 
   roles:
-    - role: roles/pre-configure
+
+  - role: setup-server-services
